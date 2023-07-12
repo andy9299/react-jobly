@@ -147,14 +147,3 @@ JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZ
 //   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
 //   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
-// JoblyApi.getCompanies({ "minEmployees": 820, "maxEmployees": 850 }).then(res => console.log(res)).catch(e => console.log(e));
-// JoblyApi.addCompany({ "name": "testCompany", "handle": "test-co", "description": "test desc", "numEmployees": 10 }).then(res => console.log(res)).catch(e => console.log(e));
-// JoblyApi.updateCompany('test-co', { "name": "testCompanyy", "description": "test desc2", "numEmployees": 11 }).then(res => console.log(res)).catch(e => console.log(e));
-// JoblyApi.getCompany('test-co').then(res => console.log(res)).catch(e => console.log(e));
-// JoblyApi.deleteCompany('test-co').then(res => console.log(res)).catch(e => console.log(e));
-// JoblyApi.addJob({ "title": "testtitle", "salary": 100, "equity": ".5", "companyHandle": "test-co" }).then(res => console.log(res)).catch(e => console.log(e));
-// JoblyApi.getJobs({ "title": "test" }).then(res => console.log(res)).catch(e => console.log(e));
-// JoblyApi.getJob(202).then(res => console.log(res)).catch(e => console.log(e));
-// JoblyApi.updateJob(202, { "title": "testtitle2", "salary": 1002, "equity": ".52" }).then(res => console.log(res)).catch(e => console.log(e));
-// JoblyApi.deleteJob(202).then(res => console.log(res)).catch(e => console.log(e));
-JoblyApi.getUser("testuser3", 199).then(res => console.log(res)).catch(e => console.log(e));
