@@ -1,0 +1,29 @@
+import React from "react";
+import useFields from "../hooks/useFields";
+import { Button, Input } from "reactstrap";
+
+function CompanySearchForm({ search }) {
+  const [formData, handleChange, resetForm] = useFields({
+    name: ""
+  });
+  const handleSubmit = e => {
+    e.preventDefault();
+    search(formData.name);
+    resetForm();
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="input-group">
+        <Input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Search a Company" />
+        <Button color="secondary">Search</Button>
+      </div>
+    </form>
+  );
+}
+
+export default CompanySearchForm;

@@ -18,4 +18,5 @@ nav a.active:not(.navbar-brand) {
 
 a.navbar-brand {
   padding: 0;
+  color: white;
 }
