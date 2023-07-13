@@ -47,10 +47,13 @@ function CompaniesList() {
     return (
       <div className="col-md-8 offset-md-2">
         <CompanySearchForm search={search} />
-        {Object.keys(companies).map((keyName) => (
-          <CompanyCard name={companies[keyName].name} description={companies[keyName].description}
-            handle={companies[keyName].handle} logoUrl={companies[keyName].logoUrl} />
-        ))}
+        {companies.map(company =>
+          <CompanyCard
+            name={company.name}
+            description={company.description}
+            handle={company.handle}
+            logoUrl={company.logoUrl}
+          />)}
       </div>
     );
   }
