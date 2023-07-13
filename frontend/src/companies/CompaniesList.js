@@ -15,17 +15,33 @@ function CompaniesList() {
       setIsLoading(true);
       const companies = await JoblyApi.getCompanies({ name });
       setCompanies(companies);
-      setIsLoading(false);
     }
     catch (err) {
-      setError(err);
+      setError(err.message);
+    }
+    finally {
       setIsLoading(false);
     }
   };
+
+  // const search = (name) => {
+  //   setIsLoading(true);
+  //   JoblyApi.getCompanies({ name })
+  //     .then(companies => {
+  //       setCompanies(companies);
+  //     })
+  //     .catch(err => {
+  //       setError(err.message);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // };
+
   useEffect(() => {
     search();
   }, []);
-  if (error) return <Alert color="danger">An error has occured.</Alert>;
+  if (error) return <Alert color="danger">An error has occurred: {error}</Alert>;
   if (isLoading) return <LoadingSpinner />;
   if (!error && !isLoading) {
     return (

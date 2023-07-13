@@ -15,17 +15,17 @@ function AppNavBar() {
         </NavLink>
         <Nav className="ml-auto">
           <NavItem >
-            <NavLink end to="/companies" className="me-2">
+            <NavLink to="/companies" className="me-2">
               Companies
             </NavLink>
           </NavItem>
           <NavItem >
-            <NavLink end to="/jobs" className="me-2">
+            <NavLink to="/jobs" className="me-2">
               Jobs
             </NavLink>
           </NavItem>
           <NavItem >
-            <NavLink end to="/profile" className="me-2">
+            <NavLink to="/profile" className="me-2">
               Profile
             </NavLink>
           </NavItem>
