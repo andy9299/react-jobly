@@ -17,7 +17,7 @@ function JobsList() {
       setJobs(jobs);
     }
     catch (err) {
-      setError(err.message);
+      setError(err);
     }
     finally {
       setIsLoading(false);
@@ -28,7 +28,9 @@ function JobsList() {
     search();
   }, []);
 
-  if (error) return <Alert color="danger">An error has occurred: {error}</Alert>;
+  if (error) return ((Array.isArray(error)) ?
+    error.map(err => <Alert color="danger">An error has occurred: {err}</Alert>)
+    : <Alert color="danger">An error has occurred</Alert>);
 
   if (isLoading) return <LoadingSpinner />;
 
