@@ -14,6 +14,10 @@ class JoblyApi {
   // the token for interactive with the API will be stored here.
   static token;
 
+  static setApiToken(newToken) {
+    this.token = newToken;
+  }
+
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
 

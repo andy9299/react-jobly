@@ -17,31 +17,19 @@ function CompaniesList() {
       setCompanies(companies);
     }
     catch (err) {
-      setError(err.message);
+      setError(err);
     }
     finally {
       setIsLoading(false);
     }
   };
 
-  // const search = (name) => {
-  //   setIsLoading(true);
-  //   JoblyApi.getCompanies({ name })
-  //     .then(companies => {
-  //       setCompanies(companies);
-  //     })
-  //     .catch(err => {
-  //       setError(err.message);
-  //     })
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // };
-
   useEffect(() => {
     search();
   }, []);
-  if (error) return <Alert color="danger">An error has occurred: {error}</Alert>;
+
+  if (error) return error.map(err => <Alert color="danger">An error has occurred: {err}</Alert>);
+  ;
   if (isLoading) return <LoadingSpinner />;
   if (!error && !isLoading) {
     return (
@@ -49,6 +37,7 @@ function CompaniesList() {
         <CompanySearchForm search={search} />
         {companies.map(company =>
           <CompanyCard
+            key={company.handle}
             name={company.name}
             description={company.description}
             handle={company.handle}
