@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Alert } from "reactstrap";
+import React, { useEffect, useState } from "react";
 import CompanyCard from "./CompanyCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import JoblyApi from "../api";
 import CompanySearchForm from "./CompanySearchForm";
-import UserContext from "../context/UserContext";
 import ErrorMessages from "../common/ErrorMessages";
 
 function CompaniesList() {

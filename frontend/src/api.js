@@ -140,12 +140,24 @@ class JoblyApi {
     return res;
   }
 
+  // AUTH ROUTES
+
+  static async getToken(loginInfo) {
+    let res = await this.request(`auth/token`, loginInfo, "post");
+    return res;
+  }
+
+  static async register(registerInfo) {
+    let res = await this.request(`auth/register`, registerInfo, 'post');
+    return res;
+  }
+
 }
 
 // for now, put token ("testuser" / "password" on class)
 
 //admin
-JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZG1pbiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4ODU4Mzk3Nn0.ZBR8jwDGH9FeznZwvCzUh7PMRAKfcWDKyDNlkRpM56E";
+// JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZG1pbiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4ODU4Mzk3Nn0.ZBR8jwDGH9FeznZwvCzUh7PMRAKfcWDKyDNlkRpM56E";
 
 // normal user
 // JoblyApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +

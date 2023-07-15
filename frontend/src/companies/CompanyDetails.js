@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Alert } from "reactstrap";
 import LoadingSpinner from "../common/LoadingSpinner";
 import JobCard from "../jobs/JobCard";
 import JoblyApi from "../api";
