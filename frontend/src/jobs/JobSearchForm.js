@@ -13,7 +13,7 @@ function JobSearchForm({ search }) {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <div className="input-group">
+      <div className="input-group mb-2">
         <Input
           type="text"
           name="name"

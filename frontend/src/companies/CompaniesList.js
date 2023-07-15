@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Alert } from "reactstrap";
 import CompanyCard from "./CompanyCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import JoblyApi from "../api";
 import CompanySearchForm from "./CompanySearchForm";
+import UserContext from "../context/UserContext";
+import ErrorMessages from "../common/ErrorMessages";
 
 function CompaniesList() {
   const [companies, setCompanies] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [errors, setErrors] = useState(null);
 
   const search = async (name) => {
     try {
@@ -17,7 +19,7 @@ function CompaniesList() {
       setCompanies(companies);
     }
     catch (err) {
-      setError(err);
+      setErrors(err);
     }
     finally {
       setIsLoading(false);
@@ -28,27 +30,25 @@ function CompaniesList() {
     search();
   }, []);
 
-  if (error) return ((Array.isArray(error)) ?
-    error.map(err => <Alert color="danger">An error has occurred: {err}</Alert>)
-    : <Alert color="danger">An error has occurred</Alert>);
-
   if (isLoading) return <LoadingSpinner />;
 
-  if (!error && !isLoading) {
-    return (
-      <div className="col-md-8 offset-md-2">
-        <CompanySearchForm search={search} />
-        {companies.map(company =>
+  return (
+    <div className="col-md-8 offset-md-2">
+      <CompanySearchForm search={search} />
+      {errors ? <ErrorMessages errors={errors} />
+        :
+        companies.map(company =>
           <CompanyCard
             key={company.handle}
             name={company.name}
             description={company.description}
             handle={company.handle}
             logoUrl={company.logoUrl}
-          />)}
-      </div>
-    );
-  }
+          />)
+      }
+    </div>
+  );
+
 
 }
-export default CompaniesList;
+export default CompaniesList;;

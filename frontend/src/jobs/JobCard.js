@@ -4,7 +4,7 @@ import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 function JobCard({ title, salary, equity }) {
   return (
 
-    <Card className="JobCard mt-2">
+    <Card className="JobCard mb-2">
       <CardBody>
         <CardTitle tag="h6">
           {title}

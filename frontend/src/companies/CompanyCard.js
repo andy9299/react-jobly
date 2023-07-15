@@ -4,7 +4,7 @@ import { Card, CardBody, CardTitle, CardText, CardImg } from "reactstrap";
 function CompanyCard({ name, description, logoUrl, handle }) {
   return (
 
-    <Card className="CompanyCard mt-2">
+    <Card className="CompanyCard mb-2">
       <a href={`/companies/${handle}`}>
         <CardBody>
           <CardTitle tag="h6">

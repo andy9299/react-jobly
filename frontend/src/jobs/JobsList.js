@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert } from "reactstrap";
+import ErrorMessages from "../common/ErrorMessages";
 import JobCard from "./JobCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import JoblyApi from "../api";
@@ -8,7 +8,7 @@ import JobSearchForm from "./JobSearchForm";
 function JobsList() {
   const [jobs, setJobs] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [errors, setErrors] = useState(null);
 
   const search = async (title) => {
     try {
@@ -17,7 +17,7 @@ function JobsList() {
       setJobs(jobs);
     }
     catch (err) {
-      setError(err);
+      setErrors(err);
     }
     finally {
       setIsLoading(false);
@@ -28,26 +28,24 @@ function JobsList() {
     search();
   }, []);
 
-  if (error) return ((Array.isArray(error)) ?
-    error.map(err => <Alert color="danger">An error has occurred: {err}</Alert>)
-    : <Alert color="danger">An error has occurred</Alert>);
 
   if (isLoading) return <LoadingSpinner />;
 
-  if (!error && !isLoading) {
-    return (
-      <div className="col-md-8 offset-md-2">
-        <JobSearchForm search={search} />
-        {jobs.map(job =>
+  return (
+    <div className="col-md-8 offset-md-2">
+      <JobSearchForm search={search} />
+      {errors ? <ErrorMessages errors={errors} />
+        :
+        jobs.map(job =>
           <JobCard
             key={job.id}
             title={job.title}
             salary={job.salary}
             equity={job.equity}
-          />)}
-      </div>
-    );
-  }
+          />)
+      }
+    </div>
+  );
 
 }
 export default JobsList;
