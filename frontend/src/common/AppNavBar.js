@@ -5,10 +5,7 @@ import "./AppNavBar.css";
 import UserContext from "../context/UserContext";
 
 function AppNavBar() {
-  const { currentUser } = useContext(UserContext);
-  const logout = () => {
-    console.log("logging out");
-  };
+  const { currentUser, logout } = useContext(UserContext);
   return (
     <>
       <Navbar expand="md" >
@@ -35,7 +32,7 @@ function AppNavBar() {
               </NavItem>
               <NavItem >
                 <a href="/" onClick={logout}>
-                  Logout
+                  Logout {currentUser.username}
                 </a>
               </NavItem>
             </>

@@ -29,18 +29,21 @@ function CompanyDetails() {
     search(handle);
   }, []);
 
-  if (errors) return <ErrorMessages errors={errors} />;
   if (isLoading) return <LoadingSpinner />;
-  if (!errors && !isLoading) {
-    return (
-      <div className="col-md-8 offset-md-2">
-        <h1>{company.name}</h1>
-        <small>{company.description}</small>
-        <div className="jobs-list">
-          {company.jobs.map((job) => <JobCard key={job.id} title={job.title} salary={job.salary} equity={job.equity} />)}
-        </div>
-      </div>
-    );
-  }
+  return (
+    <div className="col-md-8 offset-md-2">
+      {errors ? <ErrorMessages errors={errors} />
+        :
+        <>
+          <h1>{company.name}</h1>
+          <small>{company.description}</small>
+          <div className="jobs-list">
+            {company.jobs.map((job) => <JobCard key={job.id} title={job.title} salary={job.salary} equity={job.equity} />)}
+          </div>
+        </>
+      }
+
+    </div>
+  );
 }
-export default CompanyDetails;
+export default CompanyDetails; 

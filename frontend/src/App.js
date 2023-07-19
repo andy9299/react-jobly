@@ -5,22 +5,30 @@ import { BrowserRouter, redirect } from 'react-router-dom';
 import UserContext from './context/UserContext';
 import JoblyApi from './api';
 import jwt from 'jsonwebtoken';
+import useLocalStorageState from './hooks/useLocalStorageState';
 
 function App() {
-  const [token, setToken] = useState(null);
+  // const [token, setToken] = useState(null);
+
   const [currentUser, setCurrentUser] = useState(null);
+  const [token, setToken] = useLocalStorageState('jobly-token', null);
 
   useEffect(() => {
     async function getCurrentUser() {
       if (token) {
         try {
-          const user = jwt.decode(token);
-          setCurrentUser(user);
+          const { username } = jwt.decode(token);
+          JoblyApi.token = token;
+          setCurrentUser(await JoblyApi.getUser(username));
         }
         catch (err) {
           alert("Error loading user");
+          setCurrentUser(null);
           redirect('/');
         }
+      }
+      else {
+        setCurrentUser(null);
       }
     }
     getCurrentUser();
@@ -29,7 +37,6 @@ function App() {
   async function login(loginInfo) {
     try {
       const newToken = await JoblyApi.getToken(loginInfo);
-      JoblyApi.token = newToken.token;
       setToken(newToken.token);
     }
     catch (err) {
@@ -40,11 +47,10 @@ function App() {
   async function register(registerInfo) {
     try {
       const newToken = await JoblyApi.register(registerInfo);
-      JoblyApi.token = newToken.token;
       setToken(newToken.token);
     }
     catch (err) {
-      alert("Invalid Register");
+      throw err;
     }
   }
 
