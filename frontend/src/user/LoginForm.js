@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import ErrorMessages from "../common/ErrorMessages";
 
 function LoginForm() {
-  const { login } = useContext(UserContext);
+  const { login, currentUser } = useContext(UserContext);
   const history = useNavigate();
   const [formData, handleChange, resetForm] = useFields({
     username: "",
@@ -24,6 +24,7 @@ function LoginForm() {
       setErrors(err);
     }
   };
+  if (currentUser) return null;
   return (
     <form className="col-md-8 offset-md-2" onSubmit={handleSubmit}>
       <div className="mb-2">

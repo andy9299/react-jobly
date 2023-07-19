@@ -8,8 +8,6 @@ import jwt from 'jsonwebtoken';
 import useLocalStorageState from './hooks/useLocalStorageState';
 
 function App() {
-  // const [token, setToken] = useState(null);
-
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorageState('jobly-token', null);
 
@@ -54,13 +52,23 @@ function App() {
     }
   }
 
+  async function editProfile(userDetails) {
+    try {
+      const editedUser = await JoblyApi.editUser(currentUser.username, userDetails);
+      setCurrentUser(editedUser);
+    }
+    catch (err) {
+      throw err;
+    }
+  }
+
   function logout() {
     JoblyApi.token = null;
     setToken(null);
   }
 
   return (
-    <UserContext.Provider value={{ login, register, logout, currentUser }}>
+    <UserContext.Provider value={{ login, register, logout, editProfile, currentUser }}>
       <div className="App">
         <BrowserRouter>
           <AppNavBar />
