@@ -7,10 +7,7 @@ function Home() {
   return (
     <div className="text-center">
       {currentUser ?
-        <div >
-          <h1>Welcome {currentUser.username}!</h1>
-          <p>{JSON.stringify(currentUser)}</p>
-        </div>
+        <h1>Welcome {currentUser.username}!</h1>
         :
         <h1>Please Sign-In or Register</h1>
       }
