@@ -8,7 +8,7 @@ import ErrorMessages from "../common/ErrorMessages";
 function ProfileForm() {
   const { editProfile, currentUser } = useContext(UserContext);
   const history = useNavigate();
-  const [formData, handleChange, resetForm] = useFields({
+  const [formData, handleChange] = useFields({
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
     email: currentUser.email
@@ -18,14 +18,12 @@ function ProfileForm() {
     try {
       e.preventDefault();
       await editProfile(formData);
-      resetForm();
       history('/');
     }
     catch (err) {
       setErrors(err);
     }
   };
-  if (!currentUser) return null;
   return (
     <form className="col-md-8 offset-md-2" onSubmit={handleSubmit}>
       <div className="mb-2">

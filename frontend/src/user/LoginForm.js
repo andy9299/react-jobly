@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import ErrorMessages from "../common/ErrorMessages";
 
 function LoginForm() {
-  const { login, currentUser } = useContext(UserContext);
+  const { login } = useContext(UserContext);
   const history = useNavigate();
-  const [formData, handleChange, resetForm] = useFields({
+  const [formData, handleChange] = useFields({
     username: "",
     password: ""
   });
@@ -17,14 +17,12 @@ function LoginForm() {
     try {
       e.preventDefault();
       await login(formData);
-      resetForm();
       history('/');
     }
     catch (err) {
       setErrors(err);
     }
   };
-  if (currentUser) return null;
   return (
     <form className="col-md-8 offset-md-2" onSubmit={handleSubmit}>
       <div className="mb-2">

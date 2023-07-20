@@ -38,7 +38,7 @@ function CompanyDetails() {
           <h1>{company.name}</h1>
           <small>{company.description}</small>
           <div className="jobs-list">
-            {company.jobs.map((job) => <JobCard key={job.id} title={job.title} salary={job.salary} equity={job.equity} />)}
+            {company.jobs.map((job) => <JobCard key={job.id} title={job.title} salary={job.salary} equity={job.equity} id={job.id} />)}
           </div>
         </>
       }

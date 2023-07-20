@@ -62,13 +62,33 @@ function App() {
     }
   }
 
+  async function apply(jobId) {
+    try {
+      await JoblyApi.applyJob(currentUser.username, jobId);
+      setCurrentUser((currentUser) => ({
+        ...currentUser,
+        applications: [...currentUser.applications, jobId]
+      }));
+    }
+    catch (err) {
+      throw err;
+    }
+  }
+
   function logout() {
     JoblyApi.token = null;
     setToken(null);
   }
 
   return (
-    <UserContext.Provider value={{ login, register, logout, editProfile, currentUser }}>
+    <UserContext.Provider value={{
+      login,
+      register,
+      logout,
+      editProfile,
+      apply,
+      currentUser
+    }}>
       <div className="App">
         <BrowserRouter>
           <AppNavBar />
